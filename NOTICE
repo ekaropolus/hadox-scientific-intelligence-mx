@@ -4,3 +4,5 @@ Copyright 2026 Hadox Research Labs
 This clean public export contains Hadox-authored open-core material. It intentionally excludes the inherited third-party administrative UI template, the former custom authentication and administration implementation, private runtime data, credentials, client/contact records, and raw report packages.
 
 The Apache License 2.0 applies only to material for which Hadox has the right to grant that license. External datasets, APIs, fonts, libraries, and other third-party materials retain their respective licenses and terms.
+
+The Hadox and Hadox Research Labs names, logos, lockups, trade dress, and other brand identifiers are not licensed under the Apache License 2.0. The file docs/assets/hadox-research-labs-lockup.png is included solely to reproduce official Hadox documents. The license does not grant permission to imply endorsement, affiliation, or origin, or to use Hadox branding in a derivative product.

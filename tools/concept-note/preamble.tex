@@ -1,0 +1,131 @@
+% Hadox Research Labs - canonical concept-note PDF style.
+% The document remains authored in Markdown; this file owns presentation only.
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fontspec}
+\usepackage{iftex}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\setmainfont{TeX Gyre Heros}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{TeX Gyre Cursor}[Scale=MatchLowercase]
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{HadoxBlack}{HTML}{10233A}
+\definecolor{HadoxGray}{HTML}{415164}
+\definecolor{HadoxAccent}{HTML}{1D807C}
+\definecolor{HadoxGold}{HTML}{AD842D}
+\definecolor{HadoxLight}{HTML}{EEF3F7}
+\definecolor{HadoxWarm}{HTML}{F8F1DF}
+\definecolor{HadoxRule}{HTML}{C6D2DC}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=HadoxBlack,
+  urlcolor=HadoxAccent,
+  citecolor=HadoxAccent,
+  pdfborder={0 0 0}
+}
+\urlstyle{same}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{3.2pt}
+\renewcommand{\arraystretch}{1.08}
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+\setlist[itemize]{
+  leftmargin=1.05em,
+  label=\textcolor{HadoxAccent}{\textbullet},
+  itemsep=0.02cm,
+  topsep=0.04cm,
+  parsep=0cm,
+  partopsep=0cm
+}
+\setlist[enumerate]{
+  leftmargin=1.35em,
+  itemsep=0.02cm,
+  topsep=0.04cm,
+  parsep=0cm,
+  partopsep=0cm
+}
+
+\titleformat{\section}
+  {\sffamily\bfseries\color{HadoxBlack}\fontsize{9.8pt}{11.2pt}\selectfont}
+  {}{0pt}{}
+\titlespacing*{\section}{0pt}{0.10cm}{0.03cm}
+\titleformat{\subsection}
+  {\sffamily\bfseries\color{HadoxBlack}\fontsize{9.1pt}{10.5pt}\selectfont}
+  {}{0pt}{}
+\titlespacing*{\subsection}{0pt}{0.10cm}{0.025cm}
+\titleformat{\subsubsection}
+  {\sffamily\bfseries\color{HadoxAccent}\fontsize{8.7pt}{10pt}\selectfont}
+  {}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{0.10cm}{0.02cm}
+
+\newtcolorbox{hadoxcallout}{
+  enhanced,
+  breakable,
+  colback=HadoxLight,
+  colframe=HadoxRule,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=1.8mm,
+  right=1.8mm,
+  top=1.4mm,
+  bottom=1.4mm,
+  before skip=0.05cm,
+  after skip=0.05cm
+}
+\newtcolorbox{hadoxwarmcallout}{
+  enhanced,
+  breakable,
+  colback=HadoxWarm,
+  colframe=HadoxRule,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=1.8mm,
+  right=1.8mm,
+  top=1.4mm,
+  bottom=1.4mm,
+  before skip=0.05cm,
+  after skip=0.05cm
+}
+\renewenvironment{quote}{\begin{hadoxcallout}}{\end{hadoxcallout}}
+
+\AtBeginEnvironment{longtable}{\fontsize{7.4pt}{8.8pt}\selectfont}
+\AtBeginEnvironment{tabular}{\fontsize{7.4pt}{8.8pt}\selectfont}
+\AtBeginEnvironment{verbatim}{\fontsize{7.2pt}{8.4pt}\selectfont}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.35pt}
+\renewcommand{\footrule}{
+  \hbox to\headwidth{\color{HadoxRule}\leaders\hrule height \footrulewidth\hfill}
+}
+\fancyfoot[L]{\fontsize{6.8pt}{8pt}\selectfont\color{HadoxGray}HADOX RESEARCH LABS \textbullet{} OPEN CONCEPT NOTE}
+\fancyfoot[C]{\fontsize{6.8pt}{8pt}\selectfont\color{HadoxAccent}\href{https://hadox.org}{hadox.org}}
+\fancyfoot[R]{\fontsize{6.8pt}{8pt}\selectfont\color{HadoxGray}PAGE \thepage{} / \pageref*{LastPage}}
+\setlength{\footskip}{17pt}
+
+\AtBeginDocument{
+  \fontsize{8.6pt}{10.2pt}\selectfont
+}

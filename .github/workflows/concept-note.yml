@@ -4,14 +4,16 @@ on:
   push:
     paths:
       - "docs/concept-note.md"
-      - "tools/build_concept_note.py"
-      - "requirements-docs.txt"
+      - "docs/assets/hadox-research-labs-lockup.png"
+      - "tools/concept-note/**"
+      - "Makefile"
       - ".github/workflows/concept-note.yml"
   pull_request:
     paths:
       - "docs/concept-note.md"
-      - "tools/build_concept_note.py"
-      - "requirements-docs.txt"
+      - "docs/assets/hadox-research-labs-lockup.png"
+      - "tools/concept-note/**"
+      - "Makefile"
       - ".github/workflows/concept-note.yml"
   workflow_dispatch:
 
@@ -21,14 +23,20 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: requirements-docs.txt
-      - run: python -m pip install -r requirements-docs.txt
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pandoc \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            poppler-utils \
+            fonts-texgyre
+          fc-cache -f
       - name: Render concept note from Markdown
         run: make concept-note-check
       - uses: actions/upload-artifact@v4

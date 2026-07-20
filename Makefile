@@ -1,9 +1,11 @@
-.PHONY: concept-note concept-note-check
+.PHONY: concept-note concept-note-check concept-note-lint
 
 concept-note:
-	python tools/build_concept_note.py
+	sh tools/concept-note/build.sh docs/concept-note.md docs/concept-note.pdf
 
 concept-note-check:
 	mkdir -p build
-	python tools/build_concept_note.py --output build/concept-note.pdf
-	test -s build/concept-note.pdf
+	sh tools/concept-note/build.sh docs/concept-note.md build/concept-note.pdf
+
+concept-note-lint:
+	sh tools/concept-note/lint.sh docs/concept-note.pdf docs/concept-note.md
