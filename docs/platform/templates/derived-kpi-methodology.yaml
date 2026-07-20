@@ -1,0 +1,193 @@
+# Derived KPI methodology for Scientific Intelligence country platforms.
+# Copy and fill this for each country package.
+
+country:
+  name: ""
+  iso2: ""
+  package_date: ""
+  methodology_version: "1.0"
+
+metadata:
+  prepared_by: ""
+  prepared_at: ""
+  reviewed_by: ""
+  reviewed_at: ""
+  status: "draft" # draft | reviewed | approved
+
+global_rules:
+  score_scale: "0-100"
+  missing_data_policy: "Use neutral midpoint only when justified; otherwise lower confidence and flag the gap."
+  normalization_method: "min_max_by_country_region_set"
+  outlier_policy: "winsorize_extreme_values_or_review_manually"
+  confidence_output: true
+  source_trace_required: true
+
+kpis:
+  - kpi_id: "market_entry_score"
+    label: "Market entry score"
+    purpose: "Measure how attractive a region, sector, or product line is for market entry."
+    output_table_fields:
+      score_field: "market_entry_score"
+      confidence_field: "market_entry_confidence"
+      explanation_field: "market_entry_score_notes"
+    components:
+      - component_id: "demand_scale"
+        input_fields: ["establishments"]
+        weight: 0.25
+        scoring_rule: "Normalize establishment count within the country-region comparison set."
+      - component_id: "sector_concentration"
+        input_fields: ["sector_count", "top_sector_share"]
+        weight: 0.20
+        scoring_rule: "Higher score when demand is concentrated enough to target but not dependent on one account."
+      - component_id: "local_concentration"
+        input_fields: ["top_local_units", "local_unit_establishments"]
+        weight: 0.15
+        scoring_rule: "Higher score when demand clusters can support pilot logistics."
+      - component_id: "company_size_diversity"
+        input_fields: ["top_size_labels"]
+        weight: 0.15
+        scoring_rule: "Higher score when there are enough SMEs and larger firms to support proof and scale."
+      - component_id: "contactability"
+        input_fields: ["website", "phone", "email", "contact_privacy_status"]
+        weight: 0.10
+        scoring_rule: "Score only approved public contact fields."
+      - component_id: "buyer_problem_clarity"
+        input_fields: ["theme", "offer_line_candidates"]
+        weight: 0.15
+        scoring_rule: "LLM-assisted classification allowed; evidence text and source required."
+
+  - kpi_id: "science_readiness_score"
+    label: "Science readiness score"
+    purpose: "Measure how credible and mobilizable the science base is."
+    output_table_fields:
+      score_field: "science_readiness_score"
+      confidence_field: "science_readiness_confidence"
+      explanation_field: "science_readiness_score_notes"
+    components:
+      - component_id: "researcher_depth"
+        input_fields: ["researcher_count"]
+        weight: 0.20
+        scoring_rule: "Normalize anonymized or approved researcher count."
+      - component_id: "institutional_depth"
+        input_fields: ["enriched_institution_count", "anchor_institutions"]
+        weight: 0.15
+        scoring_rule: "Higher score for multiple relevant institutions."
+      - component_id: "output_evidence"
+        input_fields: ["works_count", "cited_by_count", "notable_works"]
+        weight: 0.20
+        scoring_rule: "Use publication/output count and impact proxies where available."
+      - component_id: "official_signals"
+        input_fields: ["official_signal_count", "official_signal_score"]
+        weight: 0.20
+        scoring_rule: "Score commercialization, infrastructure, lab, grant, and official public signals."
+      - component_id: "identity_resolution"
+        input_fields: ["resolution_status", "confidence_score"]
+        weight: 0.10
+        scoring_rule: "Reduce score when researcher matching is unresolved."
+      - component_id: "application_fit"
+        input_fields: ["top_application_domains", "product_hypotheses", "product_evidence"]
+        weight: 0.15
+        scoring_rule: "Evidence-grounded fit between research and target product line."
+
+  - kpi_id: "investment_readiness_score"
+    label: "Investment readiness score"
+    purpose: "Rank investable product lines and packages."
+    output_table_fields:
+      score_field: "investment_readiness_score"
+      confidence_field: "investment_readiness_confidence"
+      explanation_field: "investment_readiness_score_notes"
+    components:
+      - component_id: "market_entry_score"
+        input_fields: ["market_entry_score"]
+        weight: 0.25
+        scoring_rule: "Imported component score."
+      - component_id: "science_readiness_score"
+        input_fields: ["science_readiness_score"]
+        weight: 0.25
+        scoring_rule: "Imported component score."
+      - component_id: "time_to_revenue"
+        input_fields: ["time_to_first_revenue_months", "time_to_repeatable_revenue_months"]
+        weight: 0.15
+        scoring_rule: "Shorter credible revenue path increases score."
+      - component_id: "budget_feasibility"
+        input_fields: ["capex_band", "opex_annual_band", "currency"]
+        weight: 0.10
+        scoring_rule: "Score relative to target investor ticket size."
+      - component_id: "risk_pressure"
+        input_fields: ["main_gap_pressure", "roadmap_risk_focus"]
+        weight: 0.10
+        scoring_rule: "High unresolved risk reduces score."
+      - component_id: "international_fit"
+        input_fields: ["international_investment_fit"]
+        weight: 0.15
+        scoring_rule: "Imported component score."
+
+  - kpi_id: "proof_feasibility_score"
+    label: "Proof feasibility score"
+    purpose: "Rank packages by 90-day execution feasibility."
+    output_table_fields:
+      score_field: "proof_feasibility_score"
+      confidence_field: "proof_feasibility_confidence"
+      explanation_field: "proof_feasibility_score_notes"
+    components:
+      - component_id: "deliverable_clarity"
+        input_fields: ["first_deliverable", "commercial_deliverable"]
+        weight: 0.20
+        scoring_rule: "Clear concrete deliverables increase score."
+      - component_id: "gate_clarity"
+        input_fields: ["technical_gate", "commercial_gate", "go_no_go_criterion"]
+        weight: 0.25
+        scoring_rule: "Clear technical and commercial gates increase score."
+      - component_id: "client_availability"
+        input_fields: ["pilot_client_profile", "pilot_client_1", "establishment_name"]
+        weight: 0.20
+        scoring_rule: "Approved named or profile-level clients increase score."
+      - component_id: "owner_completeness"
+        input_fields: ["technical_owner", "commercial_owner", "operations_owner", "qa_owner"]
+        weight: 0.15
+        scoring_rule: "Role completeness increases score; personal names are not required."
+      - component_id: "budget_clarity"
+        input_fields: ["budget_band_90d", "currency"]
+        weight: 0.10
+        scoring_rule: "Clear 90-day budget band increases score."
+      - component_id: "risk_manageability"
+        input_fields: ["main_risk"]
+        weight: 0.10
+        scoring_rule: "Manageable and specific risks score higher than vague blockers."
+
+  - kpi_id: "international_investment_fit"
+    label: "International investment fit"
+    purpose: "Estimate whether an opportunity is relevant to international science investment."
+    output_table_fields:
+      score_field: "international_investment_fit"
+      confidence_field: "international_investment_fit_confidence"
+      explanation_field: "international_investment_fit_notes"
+    components:
+      - component_id: "exportability"
+        input_fields: ["revenue_model", "grounded_product_direction"]
+        weight: 0.20
+        scoring_rule: "Products/services that can scale outside the region score higher."
+      - component_id: "foreign_partner_fit"
+        input_fields: ["key_partner_types", "recommended_vehicle"]
+        weight: 0.20
+        scoring_rule: "Clear role for foreign partners increases score."
+      - component_id: "defensibility"
+        input_fields: ["official_signal_count", "patent_or_ip_signal", "anchor_works"]
+        weight: 0.20
+        scoring_rule: "Evidence of IP, unique know-how, or hard-to-copy capacity increases score."
+      - component_id: "applied_science_depth"
+        input_fields: ["trl_current_range", "trl_target_range", "mrl_target", "arl_target_range"]
+        weight: 0.20
+        scoring_rule: "Applied readiness increases score when evidence supports it."
+      - component_id: "buyer_urgency"
+        input_fields: ["theme", "buyer_problem_clarity", "top_sectors"]
+        weight: 0.20
+        scoring_rule: "Clear urgent buyer problem increases score."
+
+review_notes:
+  assumptions:
+    - ""
+  known_limitations:
+    - ""
+  human_review_required:
+    - ""

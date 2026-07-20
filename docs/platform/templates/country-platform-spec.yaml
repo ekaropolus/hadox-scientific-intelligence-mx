@@ -1,0 +1,284 @@
+# Fill this file before asking a developer or AI agent to build a new
+# Scientific Intelligence country platform.
+
+project:
+  platform_name: "Scientific Intelligence"
+  organization_name: "Hadox Research Labs"
+  country_name: ""
+  country_iso2: ""
+  country_iso3: ""
+  deployment_domain: ""
+  target_port: ""
+  primary_language: "English"
+  secondary_languages: []
+  investor_audience:
+    - "international science investors"
+    - "public innovation agencies"
+    - "corporate venture or pilot partners"
+
+branding:
+  nav_name: "Hadox Research Labs"
+  logo_mark: "SI"
+  product_name: "Scientific Intelligence"
+  legal_entity: ""
+  support_email: ""
+  privacy_email: ""
+  feedback_email: ""
+  status_contact: ""
+
+identity_boundary:
+  provider: ""
+  implementation_reviewed: false
+  authorization_model: "deny by default; enforce server-side permissions"
+  default_allowed_regions: []
+  allowed_region_env_var: "NEXT_PUBLIC_ALLOWED_REGIONS"
+  user_region_policy: "single global selector with allowed-region filtering"
+  public_routes:
+    - "/privacy-policy"
+    - "/terms-and-conditions"
+    - "/system-status"
+    - "/feedback"
+    - "/api/health"
+
+administrative_model:
+  global_selector_label: "Report region"
+  region_unit_name: ""
+  local_unit_name: ""
+  compare_regions: false
+  regions:
+    - id: ""
+      title: ""
+      code: ""
+      slug: ""
+      prefix: ""
+      accent: "primary"
+      package_date: ""
+      coverage_mode: ""
+      map_feature_id: ""
+      thesis: ""
+
+data_sources:
+  market_registry:
+    name: ""
+    owner: ""
+    url: ""
+    license: ""
+    refresh_date: ""
+    fields_available:
+      - "company or establishment name"
+      - "industry code"
+      - "size"
+      - "address"
+      - "website"
+      - "phone"
+      - "email"
+      - "latitude"
+      - "longitude"
+  science_registry:
+    name: ""
+    owner: ""
+    url: ""
+    license: ""
+    researcher_level_equivalent: ""
+    researcher_public_id_field: ""
+  publications:
+    name: "OpenAlex or equivalent"
+    owner: ""
+    url: ""
+    license: ""
+  official_institution_signals:
+    sources: []
+  geodata:
+    boundary_source: ""
+    boundary_url: ""
+    boundary_license: ""
+    local_unit_source: ""
+    local_unit_license: ""
+    geometry_id_field: ""
+  population_or_context:
+    sources: []
+
+privacy:
+  researcher_names_public: false
+  researcher_anonymization_rule: "Use stable researcher_id plus public registry level or number."
+  researcher_private_crosswalk_location: ""
+  company_names_public: true
+  company_contact_public: "website only unless phone/email is approved"
+  personal_data_removed:
+    - "personal emails"
+    - "personal phones"
+    - "private addresses"
+  public_download_policy: "Every visible dataset has a raw download after privacy review."
+
+report_package:
+  base_path: "public/reports"
+  required_folders:
+    - "00_overview"
+    - "01_final_report"
+    - "02_reports_pdf"
+    - "03_csv_core"
+    - "04_csv_detail"
+    - "05_docs_markdown"
+    - "06_workflows"
+  required_core_tables:
+    - "sector_summary"
+    - "municipality_summary"
+    - "offer_line_summary"
+    - "strategic_vehicle_summary"
+    - "line_operating_prospective"
+    - "line_financial_roadmap"
+    - "priority_line_execution_portfolio"
+    - "priority_line_execution_cards"
+    - "grounded_capability_packages"
+    - "grounded_package_priority_top4"
+    - "grounded_package_90d_plans"
+    - "grounded_package_weekly_board_summary"
+    - "grounded_package_named_summary"
+    - "grounded_package_pilot_clients_concrete"
+  required_detail_tables:
+    - "opportunity_graph"
+    - "sector_candidates"
+    - "researcher_product_intelligence"
+    - "researcher_external_outputs"
+    - "researcher_resolution_status"
+    - "refined_line_match_enriched"
+    - "official_signal_assessment"
+    - "grounded_capability_matrix"
+    - "grounded_capability_package_members"
+    - "grounded_package_portfolio"
+    - "grounded_package_weekly_board"
+    - "grounded_package_named_weekly_board"
+
+modules:
+  investment_dashboard:
+    objective: "Executive investment readiness, project funnel, and future opportunity view."
+    controls:
+      - "investment lens"
+      - "horizon"
+      - "confidence threshold"
+      - "project type"
+    charts:
+      - "readiness radar"
+      - "investment funnel"
+      - "opportunity portfolio"
+      - "scenario KPI strip"
+  market_intelligence:
+    objective: "Market demand, sector concentration, local geography, and account density."
+    controls:
+      - "sector family"
+      - "geography depth"
+      - "company size"
+      - "metric"
+      - "map layer"
+    charts:
+      - "real boundary map"
+      - "sector-local unit heatmap"
+      - "size mix"
+      - "concentration ranking"
+  science_capacity:
+    objective: "Institutional and researcher capacity behind investable product lines."
+    controls:
+      - "institution"
+      - "discipline"
+      - "output type"
+      - "evidence confidence"
+    charts:
+      - "science readiness radar"
+      - "institution network"
+      - "discipline matrix"
+      - "output evidence timeline"
+  product_lines:
+    objective: "Product and service lines that can become investable offerings."
+    controls:
+      - "readiness"
+      - "vehicle"
+      - "budget"
+      - "time to revenue"
+      - "evidence floor"
+    charts:
+      - "line portfolio"
+      - "vehicle mix"
+      - "readiness versus demand scatter"
+      - "budget and revenue horizon"
+  roadmap:
+    objective: "12/24/36-month path from evidence package to repeatable revenue."
+    controls:
+      - "phase"
+      - "budget band"
+      - "risk pressure"
+      - "vehicle"
+    charts:
+      - "milestone timeline"
+      - "risk/cost map"
+      - "gate board"
+  priority_execution:
+    objective: "Ranked execution portfolio and first projects."
+    controls:
+      - "priority tier"
+      - "consortium model"
+      - "budget"
+      - "client type"
+    charts:
+      - "priority flow"
+      - "consortium map"
+      - "project cards"
+      - "execution gate matrix"
+  grounded_packages:
+    objective: "Capability packages grounded in evidence, institutions, and anonymized people data."
+    controls:
+      - "package family"
+      - "institution"
+      - "discipline"
+      - "evidence boundary"
+      - "researcher count"
+    charts:
+      - "package evidence matrix"
+      - "package network"
+      - "evidence boundary strip"
+  ninety_day_board:
+    objective: "Near-term proof plan with gates, risks, owners, and first deliverables."
+    controls:
+      - "week"
+      - "gate"
+      - "owner role"
+      - "risk class"
+    charts:
+      - "weekly board"
+      - "gate status"
+      - "risk burn-down"
+  pilot_clients:
+    objective: "Proof accounts and go-to-market path."
+    controls:
+      - "package"
+      - "vertical"
+      - "geography"
+      - "fit score"
+      - "outreach stage"
+    charts:
+      - "package-to-client flow"
+      - "fit matrix"
+      - "account shortlist"
+
+code_changes:
+  registry_file: "reference/modules/{country-code}-regions/reportConfig.js"
+  module_export_file: "reference/modules/index.js"
+  selector_file: "reference/framework/state/RegionSelection.jsx"
+  platform_info_file: "reference/framework/config/platformInfo.js"
+  interface_implementation: ""
+  deployment_manifest: ""
+
+validation:
+  required_commands:
+    - "<project build command>"
+    - "<pipeline validation command>"
+    - "<deployment health check>"
+  manual_checks:
+    - "The identity provider and server-side authorization boundary have been independently reviewed."
+    - "Global region selector changes all modules."
+    - "Primary sidebar contains modules only."
+    - "Secondary rail controls are unique to the active module."
+    - "All maps use real geodata."
+    - "Every visible dataset has a download action."
+    - "All user-facing strings are English."
+    - "Researcher data is anonymized or approved."
+    - "Feedback, privacy, terms, status, and contributor links work."

@@ -1,0 +1,103 @@
+# Source ledger for a Scientific Intelligence country platform.
+# Every source used in public exports must have one entry.
+
+country:
+  name: ""
+  iso2: ""
+  iso3: ""
+  platform_slug: ""
+
+ledger_metadata:
+  prepared_by: ""
+  prepared_at: ""
+  reviewed_by: ""
+  reviewed_at: ""
+  status: "draft" # draft | reviewed | approved | rejected
+
+source_categories:
+  - id: "market_registry"
+    label: "Companies and establishments"
+  - id: "industry_classification"
+    label: "Industry classification"
+  - id: "geodata"
+    label: "Boundaries, centroids, and map identifiers"
+  - id: "science_registry"
+    label: "Researchers, institutions, grants, and public scientific capacity"
+  - id: "publications"
+    label: "Publications, datasets, software, patents, and outputs"
+  - id: "official_signals"
+    label: "Official institutional signals"
+  - id: "trade_investment_context"
+    label: "Trade, investment, macro, and strategic context"
+  - id: "pilot_clients"
+    label: "Pilot accounts and commercial validation"
+
+sources:
+  - source_id: ""
+    category_id: ""
+    name: ""
+    owner: ""
+    publisher_type: "official" # official | academic | international | licensed | public_web | internal | other
+    source_url: ""
+    access_method: "bulk_download" # api | bulk_download | manual_download | browser_scrape | provided_file | other
+    access_date: ""
+    source_date: ""
+    refresh_cadence: ""
+    license_name: ""
+    license_url: ""
+    terms_url: ""
+    robots_or_rate_limit_notes: ""
+    allowed_use: "unknown" # public_export | internal_only | derived_only | citation_only | unknown
+    redistribution_allowed: false
+    contains_personal_data: false
+    contains_company_contact_data: false
+    sensitive_fields:
+      - ""
+    fields_available:
+      - ""
+    geographic_coverage:
+      country: ""
+      regions:
+        - ""
+      local_units_available: false
+    time_coverage:
+      start_year: ""
+      end_year: ""
+    quality:
+      reliability_tier: "unknown" # official_primary | official_secondary | trusted_open | licensed | inferred | unknown
+      completeness_estimate: ""
+      known_gaps:
+        - ""
+      update_risk: ""
+    processing:
+      raw_path: ""
+      checksum: ""
+      normalized_path: ""
+      enriched_path: ""
+      public_export_paths:
+        - ""
+      transformations:
+        - ""
+    citation:
+      short_label: ""
+      required_text: ""
+      source_notes_field: ""
+    review:
+      privacy_review_status: "pending" # pending | approved | restricted | rejected
+      legal_review_status: "pending" # pending | approved | restricted | rejected
+      reviewer_notes: ""
+
+rejected_sources:
+  - name: ""
+    url: ""
+    reason_rejected: ""
+    replacement_source_id: ""
+
+coverage_gaps:
+  - gap_id: ""
+    category_id: ""
+    description: ""
+    affected_modules:
+      - ""
+    mitigation: ""
+    severity: "medium" # low | medium | high | blocker

@@ -1,0 +1,37 @@
+name: Concept note
+
+on:
+  push:
+    paths:
+      - "docs/concept-note.md"
+      - "tools/build_concept_note.py"
+      - "requirements-docs.txt"
+      - ".github/workflows/concept-note.yml"
+  pull_request:
+    paths:
+      - "docs/concept-note.md"
+      - "tools/build_concept_note.py"
+      - "requirements-docs.txt"
+      - ".github/workflows/concept-note.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-docs.txt
+      - name: Render concept note from Markdown
+        run: make concept-note-check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: concept-note-smoke-test
+          path: build/concept-note.pdf
+          if-no-files-found: error
