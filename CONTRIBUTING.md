@@ -16,7 +16,7 @@ Thank you for improving Hadox Scientific Intelligence.
 2. Fork the repository and create a focused branch.
 3. Add tests or a reproducible verification note where practical.
 4. Use synthetic data in fixtures and examples.
-5. If the concept note changes, run `python tools/build_concept_note.py` and commit both the Markdown and regenerated PDF.
+5. If the concept note changes, run `make concept-note` and commit both the Markdown and regenerated PDF. The build requires Pandoc, XeLaTeX, Poppler, and TeX Gyre Heros and enforces the three-page US Letter format.
 6. Submit a pull request explaining what changed, why, and how it was verified.
 
 ## Data safety

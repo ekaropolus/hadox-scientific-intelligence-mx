@@ -9,6 +9,7 @@ An open research and engineering reference for building evidence-backed regional
 
 - [Concept note (PDF)](docs/concept-note.pdf)
 - [Concept note source](docs/concept-note.md)
+- [Concept-note editorial guide](docs/CONCEPT_NOTE_EDITORIAL_GUIDE.md)
 - [Open-core manifest](OPEN_CORE_MANIFEST.md)
 - [Contribution guide](CONTRIBUTING.md)
 - [Data and third-party terms](DATA_LICENSES.md)
@@ -39,15 +40,20 @@ The open core is therefore a contribution surface and architectural reference, n
 
 ## Rebuild the concept note
 
-The PDF is generated from the tracked Markdown source, so changes are reviewable in Git:
+The PDF is generated from the tracked Markdown source with the canonical Hadox concept-note style. The build produces a compact three-page US Letter document and runs `pdfinfo` and `pdftotext` preflight checks.
+
+Required tools are Pandoc, XeLaTeX, Poppler, and TeX Gyre Heros. On Ubuntu/Debian:
 
 ```bash
-python -m pip install -r requirements-docs.txt
-python tools/build_concept_note.py
+sudo apt-get install pandoc texlive-xetex texlive-latex-extra \
+  texlive-fonts-recommended poppler-utils fonts-texgyre
+make concept-note
 ```
+
+Use `make concept-note-check` to render into `build/` without replacing the tracked PDF, or `make concept-note-lint` to preflight the tracked source and PDF. The source-to-PDF tooling lives in [`tools/concept-note/`](tools/concept-note/), and the reusable editorial contract is documented in [`docs/CONCEPT_NOTE_EDITORIAL_GUIDE.md`](docs/CONCEPT_NOTE_EDITORIAL_GUIDE.md).
 
 Commit both `docs/concept-note.md` and the regenerated `docs/concept-note.pdf` when the note changes.
 
 ## License
 
-Hadox-authored material in this clean export is licensed under the [Apache License 2.0](LICENSE). No dataset is relicensed by this repository. External datasets and third-party dependencies retain their own terms. See [NOTICE](NOTICE), [DATA_LICENSES.md](DATA_LICENSES.md), and the [open-core manifest](OPEN_CORE_MANIFEST.md).
+Hadox-authored code and documentation in this clean export are licensed under the [Apache License 2.0](LICENSE). The Hadox names, logos, lockups, and other brand identifiers are not granted under Apache-2.0. No dataset is relicensed by this repository. External datasets and third-party dependencies retain their own terms. See [NOTICE](NOTICE), [DATA_LICENSES.md](DATA_LICENSES.md), and the [open-core manifest](OPEN_CORE_MANIFEST.md).
